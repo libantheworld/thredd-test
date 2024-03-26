@@ -1,10 +1,9 @@
 "use client";
 import { store } from "./store";
 import { Provider } from "react-redux";
-import UserList from "./components/UserList";
 import { NextUIProvider, Spinner } from "@nextui-org/react";
 import { ThemeProvider } from "next-themes";
-import { PersistGate } from "redux-persist/integration/react";
+import { PersistGate } from "redux-persist/lib/integration/react";
 import { persistStore } from "redux-persist";
 
 const persistor = persistStore(store);
@@ -33,9 +32,3 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     </Provider>
   );
 }
-
-const styles = {
-  container: {
-    minHeight: "100vh",
-  },
-};

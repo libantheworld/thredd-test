@@ -4,8 +4,8 @@ import { useAppDispatch, useAppSelector } from "../hooks";
 import { Card, CardBody, CardFooter, Avatar } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 
-export default function UserList() {
-  const [error, setError] = React.useState<string | null>(null);
+const UserList = () => {
+  const error = useAppSelector((state) => state.user.error);
   const dispatch = useAppDispatch();
   const loading = useAppSelector((state) => state.user.loading);
   const users = useAppSelector((state) => state.user.users);
@@ -26,7 +26,7 @@ export default function UserList() {
   }
 
   return (
-    <div style={styles.list}>
+    <div style={styles.list} className="container">
       {users.map((user) => {
         return (
           <Card
@@ -37,6 +37,7 @@ export default function UserList() {
               router.push("/user/detail");
             }}
             isPressable
+            className="bg-zinc-900 text-slate-100"
           >
             <CardBody>
               <div className="flex flex-row gap-4">
@@ -58,7 +59,7 @@ export default function UserList() {
       })}
     </div>
   );
-}
+};
 
 const styles = {
   list: {
@@ -83,3 +84,5 @@ const styles = {
     fontWeight: "bold",
   },
 };
+
+export default UserList;
